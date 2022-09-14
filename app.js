@@ -1,6 +1,10 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`);
+  });
+
 let Movies = [];
 let globlalAddMovie = null;
 
@@ -19,9 +23,7 @@ app.get("/list-movies", (req, res) => {
   res.send(movieList);
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+
 
 app.get("/add-movie", (req, res) => {
   const localAddMovie = req.query.addMovie;
