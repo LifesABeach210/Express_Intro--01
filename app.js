@@ -216,7 +216,7 @@ app.get(
   }
 );
 app.put(
-  "/update-one/:blogTitle",
+  "/update-movie/:titleToUpdate ",
   (req, res) => {
     const date =
       new Date();
@@ -228,16 +228,16 @@ app.put(
     let category =
       req.body.category;
 
-    let blogTitle =
+    let titleToUpdate =
       req.params
-        .blogTitle;
+        .titleToUpdate;
 
-    const updatedBlogIndex =
+    const updatedMovieIndex =
       Movies.findIndex(
-        (blog) => {
+        (movie) => {
           if (
-            blog.title ===
-            blogTitle
+            movie.title ===
+            titleToUpdate
           ) {
             return true;
           } else {
@@ -245,27 +245,27 @@ app.put(
           }
         }
       );
-    const updatedBlog =
+    const updatedMovie =
       Movies[
-        updatedBlogIndex
+        updatedMovieIndex
       ];
 
-    const updatedBlogUpdate =
+    const updatedMovieUpdate =
       {
         title:
-          updatedBlog.title,
+          updatedMovie.title,
         text: text,
         author: author,
         category:
           category,
         createdAt:
-          updatedBlog.createdAt,
+          updatedMovie.createdAt,
         lastModified:
           date,
       };
 
     Movies.push(
-      updatedBlog
+      updatedMovie
     );
 
     res.json({
